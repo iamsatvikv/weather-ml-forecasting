@@ -1,115 +1,84 @@
-Weather Forecasting using Machine Learning
 
-This project focuses on building a multivariate time-series machine learning model to forecast daily temperature using several weather-related features.
-The dataset includes the following columns:
 
-Temperature
+# Weather Forecasting using Machine Learning
 
-Humidity
+This project focuses on building a multivariate time-series model to forecast daily temperature using machine learning techniques. The dataset contains weather features such as humidity, wind speed, cloud cover, pressure, and rainfall. The objective is to analyze historical weather patterns, engineer time-dependent features, train ML models, and generate short-term temperature forecasts.
 
-Wind Speed
+---
 
-Cloud Cover
+## Project Overview
 
-Pressure
+### 1. Data Preparation
 
-Rain (rain / no rain)
+* Converted all feature columns to numeric formats
+* Encoded the Rain column (rain → 1, no rain → 0)
+* Handled missing values using forward and backward fill
+* Created a date index to structure the data as a time series
 
-The goal is to analyze the weather data, engineer meaningful features, train ML models, and generate short-term forecasts.
+### 2. Exploratory Analysis
 
-Project Overview
+* Visualized the overall temperature trend
+* Computed rolling mean and rolling standard deviation
+* Performed seasonal decomposition to understand trend and seasonality
 
-The notebook includes the following steps:
+### 3. Feature Engineering
 
-1. Data Cleaning
+* Lag features for temperature (1, 3, 7, 14 days)
+* Rolling averages over 7, 14, and 30-day windows
+* Lag features for other weather variables (humidity, wind speed, cloud cover, pressure, rain)
+* Final dataset prepared for supervised learning
 
-Converted all feature values to numeric where necessary
+### 4. Machine Learning Models
 
-Encoded the Rain column (rain → 1, no rain → 0)
+Two machine-learning models were trained and evaluated:
 
-Filled missing values using forward/backward filling
+* **Random Forest Regressor**
+* **XGBoost Regressor**
 
-Assigned a proper date index to create a time series
+### 5. Evaluation Metrics
 
-2. Exploratory Analysis
+Models were evaluated on:
 
-Temperature trend visualization
+* Mean Absolute Error (MAE)
+* Root Mean Squared Error (RMSE)
 
-Rolling mean and rolling standard deviation
+A comparison table is included in the notebook.
 
-Seasonal decomposition to understand trend and seasonality
+### 6. Forecasting
 
-3. Feature Engineering
+A 7-day temperature forecast was generated using the trained XGBoost model.
+Plots for actual vs predicted values and future forecasts are included.
 
-Lag features (1, 3, 7, and 14 days)
+---
 
-Rolling averages over 7, 14, and 30 days
+## Repository Contents
 
-Lagged versions of exogenous variables
+* **weather_forecast.ipynb** — Main Jupyter/Colab notebook with full implementation
+* **weather_forecast_data.csv** — Dataset used for training (optional to upload)
 
-Final dataset constructed for model training
+---
 
-4. Machine Learning Models
+## How to Run the Project
 
-Two supervised learning models were used for forecasting:
+1. Clone the repository
+2. Open the notebook in Jupyter Notebook or Google Colab
+3. Install required packages (XGBoost, scikit-learn, pandas, matplotlib, seaborn)
+4. Run the notebook cells in order
 
-Random Forest Regressor
+---
 
-XGBoost Regressor
+## Notes
 
-5. Evaluation
+* The project uses machine-learning-based forecasting rather than classical ARIMA-based models.
+* The pipeline demonstrates core time-series ML concepts including feature engineering, lag analysis, and rolling statistics.
+* The workflow is suitable for academic submissions, ML portfolios, and entry-level AIML roles.
 
-Models were evaluated using:
+---
 
-Mean Absolute Error (MAE)
+## Future Improvements
 
-Root Mean Squared Error (RMSE)
+* Add an LSTM or GRU model for deep-learning-based forecasting
+* Include automated hyperparameter tuning (Optuna or GridSearchCV)
+* Build a simple Streamlit app for interactive forecasting
+* Add additional weather features or external data sources
 
-6. Forecasting
-
-A simple 7-day ahead temperature forecast was generated using the trained XGBoost model.
-
-Results
-
-Both models performed reasonably well, with XGBoost producing slightly smoother and more stable predictions.
-The notebook includes:
-
-Actual vs Predicted temperature plot
-
-Comparison table of MAE and RMSE
-
-A 7-day future forecast plot
-
-Files Included
-
-weather_forecast.ipynb — Main notebook containing full implementation
-
-weather_forecast_data.csv — Dataset used for the project (optional to upload)
-
-How to Run
-
-Clone the repository
-
-Open the notebook in Jupyter Notebook or Google Colab
-
-Install required packages (XGBoost, scikit-learn, pandas, etc.)
-
-Run all the cells sequentially
-
-Notes
-
-This project uses ML-based forecasting rather than classical methods like ARIMA.
-
-The model can be extended with neural networks (LSTM/GRU), hyperparameter tuning, or deployment through Streamlit.
-
-The focus of this repository is to demonstrate understanding of time-series ML workflows, feature engineering, and model evaluation.
-
-Possible Future Improvements
-
-Add an LSTM or GRU deep learning model
-
-Add automated hyperparameter tuning
-
-Deploy the model using a simple Streamlit application
-
-Include additional weather features for improved accuracy
